@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NewsAdapter</string>
     <string name="NEWS_API_KEY">6e06814528d84e9bb63abec8b7826508</string>
+    <string name="error_checkConnection">Произошла ошибка. Проверьте соединение и повторите попытку</string>
 </resources>

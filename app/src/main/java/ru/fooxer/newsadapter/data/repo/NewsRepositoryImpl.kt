@@ -1,6 +1,7 @@
 package ru.fooxer.newsadapter.data.repo
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import ru.fooxer.newsadapter.data.apiservice.ApiService
 import ru.fooxer.newsadapter.data.apiservice.NewsService
 import ru.fooxer.newsadapter.data.mapper.NewsMapper
