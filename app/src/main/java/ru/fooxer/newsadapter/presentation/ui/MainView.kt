@@ -14,4 +14,7 @@ interface MainView {
     fun hideProgressBar()
     fun setRecyclerAdapter(items: ArrayList<NewsModel>)
     fun updateRecycler()
+    fun updateAdapter(items: ArrayList<NewsModel>) {
+        TODO("Not yet implemented")
+    }
 }

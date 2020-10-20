@@ -1,6 +1,7 @@
 package ru.fooxer.newsadapter.presentation
 
 import android.util.Log
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import ru.fooxer.newsadapter.domain.usecase.GetNewsUseCase
 import ru.fooxer.newsadapter.presentation.ui.MainView
 import ru.fooxer.newsadapter.utils.SchedulerProvider
@@ -36,13 +37,23 @@ class MainPresenter @Inject constructor(
                 view?.hideError()
                 view?.showProgressBar()
                  }
+            .observeOn(schedulers.ui())
             .doOnNext{
                 Log.d("M_MainPresenter:", "onNext!")
+                view?.hideProgressBar()
+                view?.showRecycler()
+                view?.updateAdapter(it)
             }
-            .doOnError{ Log.d("M_MainPresenter:", "onError! ${it.stackTrace}")}
+            .doOnError{ Log.d("M_MainPresenter:", "onError! ${it.stackTrace}")
+                view?.hideRecycler()
+                view?.showError()
+            }
             .doOnComplete {
 
-                Log.d("M_MainPresenter:", "onComplete!")  }
+                Log.d("M_MainPresenter:", "onComplete!")
+
+
+            }
             .subscribe()
 
 

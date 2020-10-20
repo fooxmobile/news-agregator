@@ -22,7 +22,7 @@ class NewsMapper @Inject constructor() {
                 it.title,
                 it.description,
                 it.url,
-                it.urlToImage
+                if (it.urlToImage.isNotBlank()) it.urlToImage else "NoUrl"
             ))
         }
         return mappedArray

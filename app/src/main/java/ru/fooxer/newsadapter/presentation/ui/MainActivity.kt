@@ -41,7 +41,10 @@ class MainActivity : AppCompatActivity(), MainView {
         progressBar = findViewById(R.id.progressBar)
 
 
+        setRecyclerAdapter(ArrayList<NewsModel>())
+        initRecyclerView()
         mainPresenter.setView(this)
+
 
 
     }
@@ -53,6 +56,11 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun fetch() {
         mainPresenter.fetchNews()
+    }
+
+    override fun updateAdapter(items: ArrayList<NewsModel>) {
+        adapter.items = items
+        updateRecycler()
     }
 
     override fun initRecyclerView() {

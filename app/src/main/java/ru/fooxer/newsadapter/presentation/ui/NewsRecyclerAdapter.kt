@@ -15,7 +15,7 @@ import ru.fooxer.newsadapter.utils.inflate
  * Created by fooxer on 14.10.2020
  */
 
-class NewsRecyclerAdapter(private val items: ArrayList<NewsModel>) : RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder>() {
+class NewsRecyclerAdapter(var items: ArrayList<NewsModel>) : RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder>() {
 
 
 
@@ -40,7 +40,9 @@ class NewsRecyclerAdapter(private val items: ArrayList<NewsModel>) : RecyclerVie
             tvDescr.text = news.description
             Picasso.get()
                 .load(news.urlToImage)
+                .error(R.drawable.im_noimg)
                 .into(ivImg)
+
 
         }
     }
