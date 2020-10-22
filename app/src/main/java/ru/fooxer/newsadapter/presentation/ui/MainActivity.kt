@@ -36,15 +36,19 @@ class MainActivity : AppCompatActivity(), MainView {
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-
+            // TODO do styles
         tvError = findViewById(R.id.tv_error)
         progressBar = findViewById(R.id.progressBar)
 
 
         setRecyclerAdapter(ArrayList<NewsModel>())
+        // TODO subscribe adapter on array
         initRecyclerView()
         mainPresenter.setView(this)
 
+        // TODO fetch by swipe
+
+        // TODO add search line
 
 
     }
@@ -98,5 +102,10 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun updateRecycler() {
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainPresenter.onViewDestroyed()
     }
 }

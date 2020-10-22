@@ -19,6 +19,7 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsMapper: dagger.Lazy<NewsMapper>
 ) : NewsRepository  {
     override fun getNewsByName(name: String): Observable<ArrayList<NewsModel>> {
+        // TODO get string to find news
         return apiService.getNewsByName(name)
             .map{
                 newsMapper.get().toNews(it.articles)

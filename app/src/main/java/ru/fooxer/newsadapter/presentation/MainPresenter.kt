@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import ru.fooxer.newsadapter.domain.usecase.GetNewsUseCase
 import ru.fooxer.newsadapter.presentation.ui.MainView
 import ru.fooxer.newsadapter.utils.SchedulerProvider
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -28,18 +29,29 @@ class MainPresenter @Inject constructor(
         view = null
     }
 
+    fun checkConnection() {
+        // TODO Check Internet Connection
+    }
+
     fun fetchNews() {
         useCase.execute()
             .subscribeOn(schedulers.io())
+            .delay(5000, TimeUnit.MILLISECONDS)
             .doOnSubscribe {
                 // show loading wheel
                 view?.hideRecycler()
                 view?.hideError()
                 view?.showProgressBar()
                  }
+            .map {
+                Log.d("M_MainPresenter:", "CurrentThread: ${Thread.currentThread().name}")
+                it
+            }
             .observeOn(schedulers.ui())
             .doOnNext{
                 Log.d("M_MainPresenter:", "onNext!")
+                Log.d("M_MainPresenter:", "News were found:${it.size}")
+                Log.d("M_MainPresenter:", "CurrentThread: ${Thread.currentThread().name}")
                 view?.hideProgressBar()
                 view?.showRecycler()
                 view?.updateAdapter(it)
@@ -49,10 +61,7 @@ class MainPresenter @Inject constructor(
                 view?.showError()
             }
             .doOnComplete {
-
                 Log.d("M_MainPresenter:", "onComplete!")
-
-
             }
             .subscribe()
 

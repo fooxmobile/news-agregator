@@ -7,5 +7,5 @@ package ru.fooxer.newsadapter
 
 object ApplicationConfig {
     val NEWS_BASE_URL = "http://newsapi.org/v2/"
-    const val NEWS_API_KEY = "6e06814528d84e9bb63abec8b7826508"
+    const val NEWS_API_KEY = "PUT_YOUR API_KEY_HERE"
 }
